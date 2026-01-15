@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Log;
-
 class LogRequestMiddleware
 {
     /**
@@ -18,7 +17,6 @@ class LogRequestMiddleware
     {
         $browser = $request->header('User-Agent');
         Log::info($browser);
-        
         return $next($request);
     }
 }

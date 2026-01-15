@@ -17,7 +17,13 @@
                         {{ __('Produits') }}
                     </x-nav-link>
                 </div>
-
+                <!-- Dashboard Link for Admins -->
+                @hasrole('admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                @endhasrole
             </div>
 
             <!-- Settings Dropdown -->
@@ -75,12 +81,16 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        @hasrole('admin')
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('/dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-
+        <!-- <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                        {{ __('Produits') }}
+                    </x-nav-link> -->
+        @endhasrole
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
