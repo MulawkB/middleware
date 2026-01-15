@@ -20,20 +20,21 @@
                                 — {{ $product->price }} €
                                 — {{ $product->is_public ? 'Public' : 'Privé' }}
                                 <br />
-                                @can('view-product', $product)
+                                @can ('view', $product)
+                                    {{-- Voir --}}
                                     <a href="{{ route('products.show', $product) }}" class="ml-2 text-blue-600 underline">
                                         Voir
                                     </a>
                                 @endcan
                                 <br />
-                                @can('manage-product', $product)
+                                @can('update', $product)
                                     {{-- Modifier --}}
                                     <a href="{{ route('products.edit', $product) }}" class="ml-2 text-green-600 underline">
                                         Modifier
                                     </a>
                                 @endcan
-                                @can('manage-product', $product)
-                                {{-- Supprimer --}}
+                                @can('delete', $product)
+                                    {{-- Supprimer --}}
                                     <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
